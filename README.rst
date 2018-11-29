@@ -29,6 +29,7 @@ Quick start
         # do stuff ...
 
 5. Include bookmark template inside the template you defined in the view::
+
     ...
     {% include 'bookmarks/bookmark_form.html' %}
 
