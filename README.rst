@@ -20,7 +20,16 @@ Quick start
 
 3. Run `python manage.py migrate` to create the bookmarks models.
 
-4. Start the development server and visit http://127.0.0.1:8000/admin/
-   to create a Bookmark (you'll need the Admin app enabled).
+4. Extend the view you intend to use bookmarks in with the provided mixin::
+    
+    from bookmarks.views import BookmarkMixin
+    
+    class MyModelView(BookmarkMixin):
+        template_name = 'mymodeltemplate.html'
+        # do stuff ...
 
-5. Visit http://127.0.0.1:8000/ to start creating bookmarks.
+5. Include bookmark template inside the template you defined in the view::
+    ...
+    {% include 'bookmarks/bookmark_form.html' %}
+
+7. Visit http://127.0.0.1:8000/ to start creating bookmarks.
