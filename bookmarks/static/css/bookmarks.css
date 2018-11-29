@@ -1,0 +1,11 @@
+.btn-circle.btn-lg {
+  width: 40px;
+  height: 40px;
+  padding: 7px 11px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px !important;
+}
+div.bookmarks {
+  margin-top:5px;
+}
