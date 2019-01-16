@@ -1,12 +1,14 @@
 from django.http import HttpResponseNotAllowed
 from django.db import transaction
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import CreateView, DeleteView, View
 from ..models import Bookmark
 from ..forms import BookmarkForm
 from .mixins import JSONResponseMixin
 
 
-class CreateBookmarkView(CreateView):
+class CreateBookmarkView(PermissionRequiredMixin, CreateView):
+    permission_required = 'bookmarks.manage_bookmarks'
     model = Bookmark
     form_class = BookmarkForm
 
@@ -21,7 +23,8 @@ class CreateBookmarkView(CreateView):
         return self.object.get_bookmark_url()
 
 
-class DeleteBookmarkView(JSONResponseMixin, View):
+class DeleteBookmarkView(PermissionRequiredMixin, JSONResponseMixin, View):
+    permission_required = 'bookmarks.manage_bookmarks'
     model = Bookmark
 
     def post(self, request, *args, **kwargs):
